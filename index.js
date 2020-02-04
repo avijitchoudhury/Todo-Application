@@ -37,7 +37,6 @@ let todoList = {
   toggleAll: function () {
     let totalTodos = this.todos.length;
     let completedTodos = 0;
-
     // Get number of completed todos
     for (let i = 0; i < totalTodos; i++) {
       if (this.todos[i].completed === true) {
@@ -59,6 +58,16 @@ let todoList = {
   }
 }
 
-todoList.addTodos('this is an object')
+//getting access to display todos button
+let displayTodos = document.getElementById('displayTodosButton');
 
-todoList.changeTodo(0, 'second try')
+//running displayTodos method, when someone clicks the display button
+displayTodosButton.addEventListener('click', function() {
+  todoList.displayTodos();
+})
+//toggling full todo list
+let toggleAll = document.getElementById('toggleAllButton');
+//running toggleAll method, when someone clicks toggleAll button
+toggleAll.addEventListener('click', function() {
+  todoList.toggleAll();
+})
