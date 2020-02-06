@@ -58,6 +58,7 @@ let todoList = {
   }
 }
 
+
 //getting access to display todos and toggling full todo list
 let handlers = {
   displayTodos: function() {
@@ -65,5 +66,10 @@ let handlers = {
   },
   toggleAll: function() {
     todoList.toggleAll();
+  },
+  addTodos: function() {
+    let addTodoTextInput = document.getElementById('addTodoTextInput');
+    todoList.addTodos(addTodoTextInput.value);
+    addTodoTextInput.value = '';
   }
 }
