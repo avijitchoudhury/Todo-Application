@@ -71,5 +71,12 @@ let handlers = {
     let addTodoTextInput = document.getElementById('addTodoTextInput');
     todoList.addTodos(addTodoTextInput.value);
     addTodoTextInput.value = '';
+  },
+  changeTodo: function() {
+    let changeToDoPosition = document.getElementById('changeToDoPosition');
+    let changeToDoText = document.getElementById('changeToDoText');
+    todoList.changeTodo(changeToDoPosition.valueAsNumber, changeToDoText.value);
+    changeToDoPosition.valueAsNumber = '';
+    changeToDoText = '';
   }
 }
