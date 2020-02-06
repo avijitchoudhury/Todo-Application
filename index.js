@@ -73,10 +73,15 @@ let handlers = {
     addTodoTextInput.value = '';
   },
   changeTodo: function() {
-    let changeToDoPosition = document.getElementById('changeToDoPosition');
-    let changeToDoText = document.getElementById('changeToDoText');
+    let changeToDoPositionInput = document.getElementById('changeToDoPositionInput');
+    let changeToDoTextInput = document.getElementById('changeToDoTextInput');
     todoList.changeTodo(changeToDoPosition.valueAsNumber, changeToDoText.value);
-    changeToDoPosition.valueAsNumber = '';
-    changeToDoText = '';
+    changeToDoPositionInput.valueAsNumber = '';
+    changeToDoTextInput.value = '';
+  },
+  deleteTodos: function() {
+    let deleteTodoPositionInput = document.getElementById('deleteTodoPositionInput');
+    todoList.deleteTodos(deleteTodoPositionInput.valueAsNumber);
+    deleteTodoPositionInput.valueAsNumber = '';
   }
 }
