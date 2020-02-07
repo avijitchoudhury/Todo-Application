@@ -59,7 +59,7 @@ let todoList = {
 }
 
 
-//getting access to display todos and toggling full todo list
+
 let handlers = {
   displayTodos: function() {
     todoList.displayTodos();
@@ -90,3 +90,22 @@ let handlers = {
     toggleCompletedPositionInput.valueAsNumber = '';
   }
 }
+
+let views = {
+  displayTodos: function () {
+    let todosUl = document.querySelector('ul');
+    todosUl.innerHTML = '';
+    for(let i = 0; i < todoList.todos.length; i++) {
+      let todosLi = document.createElement('li');
+      let todo = todoList.todos[i];
+      let todoTextWithCompletion = '';
+      if(todo.completed === true) {
+        todoTextWithCompletion = '(x)' + todo.todoText;
+      } else {
+        todoTextWithCompletion = '()' + todo.todoText;
+      }
+      todosLi.textContent = todoList.todos[i].todoText
+      todosUl.appendChild(todosLi);
+    }
+  }
+} 
