@@ -1,19 +1,5 @@
 let todoList = {
   todos: [],
-  displayTodos: function () {
-    if (this.todos.length === 0) {
-      console.log('Your todo list is empty!')
-    } else {
-      console.log('My Todos:');
-      for (let i = 0; i < this.todos.length; i++) {
-        if (this.todos[i].completed === true) {
-          console.log('(x)', this.todos[i].todoText);
-        } else {
-          console.log('()', this.todos[i].todoText);
-        }
-      }
-    }
-  },
   addTodos: function (todoText) {
     this.todos.push({
       todoText: todoText,
@@ -66,11 +52,13 @@ let handlers = {
   },
   toggleAll: function() {
     todoList.toggleAll();
+    views.displayTodos();
   },
   addTodos: function() {
     let addTodoTextInput = document.getElementById('addTodoTextInput');
     todoList.addTodos(addTodoTextInput.value);
     addTodoTextInput.value = '';
+    views.displayTodos();
   },
   changeTodo: function() {
     let changeToDoPositionInput = document.getElementById('changeToDoPositionInput');
@@ -78,19 +66,23 @@ let handlers = {
     todoList.changeTodo(changeToDoPosition.valueAsNumber, changeToDoText.value);
     changeToDoPositionInput.valueAsNumber = '';
     changeToDoTextInput.value = '';
+    views.displayTodos();
   },
   deleteTodos: function() {
     let deleteTodoPositionInput = document.getElementById('deleteTodoPositionInput');
     todoList.deleteTodos(deleteTodoPositionInput.valueAsNumber);
     deleteTodoPositionInput.valueAsNumber = '';
+    views.displayTodos();
   },
   toggleCompleted: function() {
     let toggleCompletedPositionInput = document.getElementById('toggleCompletedPositionInput');
     todoList.toggleCompleted(toggleCompletedPositionInput.valueAsNumber);
     toggleCompletedPositionInput.valueAsNumber = '';
+    views.displayTodos();
   }
 }
 
+//Appending the todolist in the DOM
 let views = {
   displayTodos: function () {
     let todosUl = document.querySelector('ul');
