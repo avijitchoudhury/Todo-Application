@@ -104,7 +104,6 @@ let views = {
   },
   setUpEventsListeners: function() {
     let todosUl = document.querySelector('ul');
-
     todosUl.addEventListener('click', function (events) {
       let elementClicked = events.target;
       if (elementClicked.className === 'deleteButton') {
