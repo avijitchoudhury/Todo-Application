@@ -20,27 +20,20 @@ let todoList = {
     let totalTodos = this.todos.length;
     let completedTodos = 0;
     // Get number of completed todos
-    // for (let i = 0; i < totalTodos; i++) {
-    //   if (this.todos[i].completed === true) {
-    //     completedTodos++;
-    //   }
-    // }
     this.todos.forEach(function(todo) {
       if(todo.completed === true) {
         completedTodos++;
       }
     });
-    // If everything is true, make everything false
-    if (completedTodos === totalTodos) {
-      this.todos.forEach(function() {
-        todo.completed = false
-      });
-    //Otherwise, make everything true
-    } else {
-      this.todos.forEach(function (todo) {
+    this.todos.forEach(function(todo) {
+      //If everything's true, make everything false
+      if (completedTodos === totalTodos) {
+        todo.completed = false;
+      } else {
+      // if everything is false, make everything true
         todo.completed = true;
-      });
-    }
+      }
+    })
   }
 }
 
@@ -85,21 +78,21 @@ let views = {
   displayTodos: function () {
     let todosUl = document.querySelector('ul');
     todosUl.innerHTML = '';
-    for(let i = 0; i < todoList.todos.length; i++) {
+    todoList.todos.forEach(function(todo, position) {
       let todosLi = document.createElement('li');
-      let todo = todoList.todos[i];
       let todoTextWithCompletion = '';
+
       if(todo.completed === true) {
-        todoTextWithCompletion = '(x)' + todo.todoText;
+        todoTextWithCompletion = '(x) ' + todo.todoText;
       } else {
-        todoTextWithCompletion = '( )' + todo.todoText;
+        todoTextWithCompletion = '( ) ' + todo.todoText;
       }
 
-      todosLi.id = i;
-      todosLi.textContent = todoList.todos[i].todoText
+      todosLi.id = position;
+      todosLi.textContent = todoTextWithCompletion;
       todosLi.appendChild(this.createDeleteButton());
       todosUl.appendChild(todosLi);
-    }
+    }, this) //adding 'this' will allow access to this.createDeleteButton 
   },
   createDeleteButton: function() {
     let deleteButton = document.createElement('button');
